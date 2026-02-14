@@ -10,6 +10,67 @@ A light, playful CTF you can run at home with a laptop and your phone.
 - **Flag format:** `VAL{...}`
 - **Scoring suggestion:** 100 points each (bonus 50 for no hints)
 
+### Quick Start (Host Setup in ~30–45 min)
+
+1. Create a folder on your laptop called `valentine-ctf/`.
+2. Put one challenge artifact per file inside it (examples below: `roses.png`, `gift.zip`, `love.pcap`).
+3. Give your wife only:
+   - `valentines-ctf.md` (or a printed version), and
+   - challenge files as she reaches each level.
+4. Use this flag checker rule: only accept answers in `VAL{...}` format.
+5. Keep an answer key (the expected flags listed under each challenge).
+
+### What she needs on her side
+
+- A laptop (Linux/macOS/Windows is fine)
+- Optional tools:
+  - CyberChef (web) or terminal `base64`
+  - `strings` and `exiftool`
+  - Wireshark
+  - Any browser
+
+### What you need to prepare (copy/paste commands)
+
+> Run these on your machine to generate the challenge files quickly.
+
+#### Challenge 3 file: `roses.png`
+
+Use any PNG image named `roses.png`, then add metadata:
+
+```bash
+exiftool -Comment="VAL{you_found_the_hidden_kiss}" roses.png
+```
+
+#### Challenge 4 file: `gift.zip`
+
+```bash
+echo 'Flag: VAL{music_of_my_heart}' > next.txt
+zip -e gift.zip next.txt
+# enter password: VAL{hearts_and_kisses}
+```
+
+#### Challenge 6 file: `love.pcap` (easy method)
+
+If you have Wireshark/tcpdump experience, capture one HTTP request containing:
+
+```text
+GET /?flag=VAL{sniffed_with_love} HTTP/1.1
+Host: love.local
+```
+
+If you prefer, skip custom capture and provide a prebuilt tiny pcap from your own lab machine.
+
+### Suggested game flow (date-night friendly)
+
+- Start with Challenges 1–2 printed on paper/card.
+- Hand over files (`roses.png`, then `gift.zip`, then `love.pcap`) only when each prior challenge is solved.
+- For Challenge 5 (SQLi), run a deliberately vulnerable local demo only on your own laptop/home network.
+- When she gets Challenge 8, verify final SHA1 and reveal the prize.
+
+### Safety note
+
+This is for playful learning in a private environment. Keep all intentionally vulnerable demos local and temporary.
+
 ---
 
 ## Challenge 1 — "Our First Date" (Caesar Cipher)
