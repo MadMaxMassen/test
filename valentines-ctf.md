@@ -289,3 +289,4 @@ Use this as the final “unlock” before giving real-world prize.
 When she submits final flag, hand over a sealed envelope saying:
 
 > “Root access granted to my heart forever. ❤️”
+
